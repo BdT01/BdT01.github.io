@@ -24,7 +24,7 @@ def get_historial(id):
         HISTORIAL.id = res[0]
         HISTORIAL.fecha = res[1]
         HISTORIAL.hora = res[2]
-        HISTORIAL.antecedentes = res[3]
+        # HISTORIAL.antecedentes = res[3]
         HISTORIAL.tratamiento = res[4]
         HISTORIAL.problemas = res[5]
         HISTORIAL.observaciones = res[6]
@@ -207,7 +207,7 @@ def update_nombre(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="172.19.173.52")
+    app.run(debug=True, host="0.0.0.0")
 
 
 

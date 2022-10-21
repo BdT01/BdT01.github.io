@@ -1,0 +1,11 @@
+version: '3.10'
+services:
+  app:
+    build: ./
+  nginx:
+    container_name: nginx
+    build: nginx
+    ports:
+      - 8081:80
+    depends_on:
+      - app
