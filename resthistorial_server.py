@@ -5,11 +5,17 @@ from resthistorial.historialApi import Historial
 import sqlite3
 import json
 
+from flask_cors import CORS, cross_origin
+
+
 app = Flask("restHistorial")
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 HISTORIAL = Historial()
 DATABASE = "pacientes.db"
 
 @app.route("/historial/<id>", methods=["GET", "PUT", "POST"])
+@cross_origin()
 def get_historial(id):
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
