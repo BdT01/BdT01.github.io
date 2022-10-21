@@ -29,7 +29,7 @@ def get_historial(id):
         HISTORIAL.problemas = res[5]
         HISTORIAL.observaciones = res[6]
         con.close()
-        return make_response(HISTORIAL.get_historial(), 200)
+        return make_response(json.dumps(HISTORIAL.get_historial()), 200)
 
     elif request.method == "PUT":
         if not request.is_json:
@@ -57,7 +57,10 @@ def add_antecedente(id):
         return make_response("Bad request", 400)
     
     request_json = json.loads(request.get_json())
-    antecedente = request_json["antecedente"]
+    try:
+        antecedente = request_json["antecedente"]
+    except KeyError:
+        return make_response("Bad request", 400)
 
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -79,7 +82,11 @@ def add_tratamiento(id):
         return make_response("Bad request", 400)
     
     request_json = json.loads(request.get_json())
-    tratamiento = request_json["tratamiento"]
+
+    try:
+        tratamiento = request_json["tratamiento"]
+    except KeyError:
+        return make_response("Bad request", 400)
 
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -101,7 +108,11 @@ def add_problema(id):
         return make_response("Bad request", 400)
     
     request_json = json.loads(request.get_json())
-    problema = request_json["problema"]
+
+    try:
+        problema = request_json["problema"]
+    except KeyError:
+        return make_response("Bad request", 400)
 
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -123,7 +134,11 @@ def add_observacion(id):
         return make_response("Bad request", 400)
     
     request_json = json.loads(request.get_json())
-    observacion = request_json["observacion"]
+
+    try:
+        observacion = request_json["observacion"]
+    except KeyError:
+        return make_response("Bad request", 400)
 
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -145,7 +160,11 @@ def update_nombre(id):
         return make_response("Bad request", 400)
     
     request_json = json.loads(request.get_json())
-    nombre = request_json["nombre"]
+
+    try:
+        nombre = request_json["nombre"]
+    except KeyError:
+        return make_response("Bad request", 400)
 
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -160,7 +179,7 @@ def update_nombre(id):
     return make_response("OK", 200)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="172.19.173.52")
 
 
 

@@ -16,7 +16,7 @@ class Historial:
         self.observaciones = observaciones
 
     def get_historial(self):
-        return self
+        return {"nombre" : self.nombre, "id" : self.id, "fecha" : self.fecha, "hora" : self.hora, "antecedentes" : self.antecedentes, "tratamiento" : self.tratamiento, "problemas" : self.problemas, "observaciones" : self.observaciones}
     
     def add_antecendentes(self, antecedentes, tipo):
         self.antecedentes[tipo].append(antecedentes)
