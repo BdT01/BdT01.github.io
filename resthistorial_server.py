@@ -9,7 +9,7 @@ app = Flask("restHistorial")
 HISTORIAL = Historial()
 DATABASE = "pacientes.db"
 
-@app.route("/historial/<id>", methods=["GET", "PUT"])
+@app.route("/historial/<id>", methods=["GET", "PUT", "POST"])
 def get_historial(id):
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
@@ -37,6 +37,10 @@ def get_historial(id):
         
         request_json = json.loads(request.get_json())
 
+
+        if id != request_json["id"]:
+            return make_response("Bad request", 400)
+
         nombre = request_json["nombre"]
         fecha = request_json["fecha"]
         hora = request_json["hora"]
@@ -46,6 +50,29 @@ def get_historial(id):
         observaciones = request_json["observaciones"]
 
         cur.execute(f'INSERT INTO historial VALUES ("{id}", "{fecha}", "{hora}", "{antecedentes}", "{tratamiento}", "{problemas}", "{observaciones}", "{nombre}")')
+        con.commit()
+
+        con.close()
+        return make_response("OK", 200)
+    
+    elif request.method == "POST":
+        if not request.is_json:
+            return make_response("Bad request", 400)
+        
+        request_json = json.loads(request.get_json())
+
+        if id != request_json["id"]:
+            return make_response("Bad request", 400)
+
+        nombre = request_json["nombre"]
+        fecha = request_json["fecha"]
+        hora = request_json["hora"]
+        antecedentes = request_json["antecedentes"]
+        tratamiento = request_json["tratamiento"]
+        problemas = request_json["problemas"]
+        observaciones = request_json["observaciones"]
+
+        cur.execute(f'UPDATE historial SET fecha = "{fecha}", hora = "{hora}", antecedentes = "{antecedentes}", tratamiento = "{tratamiento}", problemas = "{problemas}", observaciones = "{observaciones}", nombre = "{nombre}" WHERE id = "{id}"')
         con.commit()
 
         con.close()
@@ -177,6 +204,7 @@ def update_nombre(id):
     con.commit()
     con.close()
     return make_response("OK", 200)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="172.19.173.52")
