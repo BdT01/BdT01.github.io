@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.app-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-input input {
+  width: 30ch;
+  margin: 10px;
+}
+
+.button {
+  margin-top: 10px;
+  width: auto;
+  border-radius: 10px;
+  border-color: 1px solid;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #101431;
+  font-size: 18px;
+  color: white;
+}
+
+.button:hover {
+  background-color: #444f8d;
+  transition: 0.3s;
+}
+
+.info-wrapper {
+  /* display: none; */
+  margin-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+}
+
+textarea {
+  resize: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.container-patient {
+  color: white;
+  background: rgb(20%, 30%, 60%);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  border-radius: 25px;
+}
+
+.patient_name {
+  background-color: transparent;
+  border-bottom: 3px solid black;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-size: 20px;
+  width: 40ch;
+  margin-top: 5px;
+  color: white;
+}
+
+.container-patient .last-mod {
+  font-weight: 300;
+}
+
+.info-field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.info-field textarea {
+  margin-top: 5px;
+}
+
+.info-field label {
+  font-size: 18px;
+}
+
+hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: honeydew;
+}
