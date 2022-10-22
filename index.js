@@ -1,8 +1,10 @@
-import "./src/styles.css";
+import "./styles.css";
 import $ from "jQuery";
 
 // Environment Indicators
-let editing = false;
+let last_id = undefined;
+let last_fecha = undefined;
+let last_hora = undefined;
 
 // Interactive Elements
 const button_submit = document.getElementById("button-submit");
@@ -50,23 +52,23 @@ function string_to_list(string) {
 function anyEmpty() {
   let empty = false;
 
-  if (/[a-zA-Z]/.test(name_input.value)) {
+  if (!/[a-zA-Z]/.test(name_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(algs_input.value)) {
+  } else if (!/[a-zA-Z]/.test(algs_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(enfs_input.value)) {
+  } else if (!/[a-zA-Z]/.test(enfs_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(meds_input.value)) {
+  } else if (!/[a-zA-Z]/.test(meds_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(cirs_input.value)) {
+  } else if (!/[a-zA-Z]/.test(cirs_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(othr_input.value)) {
+  } else if (!/[a-zA-Z]/.test(othr_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(treats_input.value)) {
+  } else if (!/[a-zA-Z]/.test(treats_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(probs_input.value)) {
+  } else if (!/[a-zA-Z]/.test(probs_input.value)) {
     empty = true;
-  } else if (/[a-zA-Z]/.test(obsv_input.value)) {
+  } else if (!/[a-zA-Z]/.test(obsv_input.value)) {
     empty = true;
   }
 
@@ -84,7 +86,8 @@ function fill_values(parsed) {
   treats_input.value = list_to_string(parsed["tratamientos"]);
   probs_input.value = list_to_string(parsed["problemas"]);
   obsv_input.value = list_to_string(parsed["observaciones"]);
-  editing = false;
+  last_fecha = parsed["fecha"];
+  last_hora = parsed["hora"];
 }
 
 function getHistorial(id) {
@@ -109,8 +112,45 @@ function getHistorial(id) {
   });
 }
 
+function buildDict() {
+  let queryDict = {
+    nombre: name_input.value,
+    id: last_id,
+    fecha: last_fecha,
+    hora: last_hora,
+    alergias: string_to_list(algs_input.value),
+    enfermedades: string_to_list(enfs_input.value),
+    medicamentos: string_to_list(meds_input.value),
+    cirugias: string_to_list(cirs_input.value),
+    otros: string_to_list(othr_input.value),
+    tratamientos: string_to_list(treats_input.value),
+    problemas: string_to_list(probs_input.value),
+    observaciones: string_to_list(obsv_input.value)
+  };
+
+  return queryDict;
+}
+
 function updateHistorial() {
-  console.log("La puta de su madre");
+  console.log(buildDict());
+  $.ajax({
+    url: "http://192.168.131.39:5000/historial/" + last_id,
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(buildDict()),
+    crossDomain: true,
+    statusCode: {
+      200: function (response) {
+        alert("Actualización realizada correctamente");
+      },
+      400: function (response) {
+        alert("Mala petición");
+      },
+      404: function (response) {
+        alert(`No existe ningún paciente con identificador ${last_id}`);
+      }
+    }
+  });
 }
 
 button_submit.addEventListener("click", (event) => {
@@ -122,6 +162,7 @@ button_submit.addEventListener("click", (event) => {
   } else {
     // Valid id
     getHistorial(id_input.value);
+    last_id = id_input.value;
 
     if (historial.style.display === "") {
       historial.style.display = "block";

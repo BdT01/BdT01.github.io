@@ -53,7 +53,7 @@ header {
 }
 
 .info-wrapper {
-  /* display: none; */
+  display: none;
   margin-top: 25px;
   padding-left: 50px;
   padding-right: 50px;
