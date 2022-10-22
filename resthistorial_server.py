@@ -26,8 +26,7 @@ def get_historial(id):
             con.close()
             return make_response("Not found", 404)
         
-        # alergias=[], medicamentos=[], enfermedades=[], cirugias=[], otros=[], tratamiento=[], problemas=[], observaciones=[]
-        print(HISTORIAL.get_historial())
+
         HISTORIAL.id = res[0]
         HISTORIAL.fecha = res[1]
         HISTORIAL.hora = res[2]
