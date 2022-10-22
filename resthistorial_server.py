@@ -51,19 +51,24 @@ def get_historial(id):
 
         if id != request_json["id"]:
             return make_response("Bad request", 400)
+        
+        print(request_json)
 
         nombre = request_json["nombre"]
-        fecha = request_json["fecha"]
-        hora = request_json["hora"]
-        alergias = request_json["alergias"]
-        enfermedades = request_json["enfermedades"]
-        medicamentos = request_json["medicamentos"]
-        cirugias = request_json["cirugias"]
-        otros = request_json["otros"]
+        # fecha = request_json["fecha"]
+        fecha = "22/10/2022"
+        # hora = request_json["hora"]
+        hora = "13:59:00"
 
-        tratamientos = request_json["tratamientos"]
-        problemas = request_json["problemas"]
-        observaciones = request_json["observaciones"]
+        alergias =", ".join(request_json["alergias"])
+        enfermedades = ", ".join(request_json["enfermedades"])
+        medicamentos = ", ".join(request_json["medicamentos"])
+        cirugias = ", ".join(request_json["cirugias"])
+        otros = ", ".join(request_json["otros"])
+
+        tratamientos = ", ".join(request_json["tratamientos"])
+        problemas = ", ".join(request_json["problemas"])
+        observaciones = ", ".join(request_json["observaciones"])
 
         cur.execute(
             f'INSERT INTO historial VALUES ("{id}", "{fecha}", "{hora}", "{alergias}","{enfermedades}", "{medicamentos}","{cirugias}","{otros}","{tratamientos}", "{problemas}", "{observaciones}", "{nombre}")')
@@ -78,13 +83,18 @@ def get_historial(id):
 
         # request_json = json.loads(request.get_json())
         request_json = request.get_json()
+        print(request_json)
 
         if id != request_json["id"]:
             return make_response("Bad request", 400)
 
         nombre = request_json["nombre"]
-        fecha = request_json["fecha"]
-        hora = request_json["hora"]
+        # fecha = request_json["fecha"]
+        # hora = request_json["hora"]
+        fecha = "22/10/2022"
+        hora = "13:59:00"
+
+
 
         alergias =", ".join(request_json["alergias"])
         enfermedades = ", ".join(request_json["enfermedades"])
@@ -109,4 +119,4 @@ def get_historial(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=False, host="0.0.0.0")
