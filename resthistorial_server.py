@@ -73,6 +73,13 @@ def get_historial(id):
         return make_response("OK", 200)
 
     elif request.method == "POST":
+        res = cur.execute(
+            f'SELECT * FROM historial WHERE id = "{id}"').fetchone()
+        if res is None:
+            con.close()
+            return make_response("Not found", 404)
+
+
         if not request.is_json:
             return make_response("Bad request", 400)
 
