@@ -6,7 +6,7 @@ Implementacion del servicio RESTHISTORIAL
 
 
 class Historial:
-    def __init__(self, nombre="", id=0, fecha="", hora="", alergias=[], medicamentos=[], enfermedades=[], cirugias=[], otros=[], tratamiento=[], problemas=[], observaciones=[]):
+    def __init__(self, nombre="", id=0, fecha="", hora="", alergias=[], medicamentos=[], enfermedades=[], cirugias=[], otros=[], tratamientos=[], problemas=[], observaciones=[]):
         self.nombre = nombre
         self.id = id
         self.fecha = fecha
@@ -16,7 +16,7 @@ class Historial:
         self.medicamentos = medicamentos
         self.cirugias = cirugias
         self.otros = otros
-        self.tratamiento = tratamiento
+        self.tratamientos = tratamientos
         self.problemas = problemas
         self.observaciones = observaciones
 

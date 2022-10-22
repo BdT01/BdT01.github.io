@@ -20,14 +20,20 @@ def get_historial(id):
             con.close()
             return make_response("Not found", 404)
         
-        HISTORIAL.nombre = res[7]
+        # alergias=[], medicamentos=[], enfermedades=[], cirugias=[], otros=[], tratamiento=[], problemas=[], observaciones=[]
+        print(HISTORIAL.get_historial())
         HISTORIAL.id = res[0]
         HISTORIAL.fecha = res[1]
         HISTORIAL.hora = res[2]
-        # HISTORIAL.antecedentes = res[3]
-        HISTORIAL.tratamiento = res[4]
-        HISTORIAL.problemas = res[5]
-        HISTORIAL.observaciones = res[6]
+        HISTORIAL.tratamientos = res[3].split(", ")
+        HISTORIAL.problemas = res[4].split(", ")
+        HISTORIAL.observaciones = res[5].split(", ")
+        HISTORIAL.nombre = res[6]
+        HISTORIAL.alergias = res[7].split(", ")
+        HISTORIAL.enfermedades = res[8].split(", ")
+        HISTORIAL.medicamentos = res[9].split(", ")
+        HISTORIAL.cirugias = res[10].split(", ")
+        HISTORIAL.otros = res[11].split(", ")
         con.close()
         return make_response(json.dumps(HISTORIAL.get_historial()), 200)
 
