@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./src/styles.css";
 import $ from "jQuery";
 
 // Environment Indicators
