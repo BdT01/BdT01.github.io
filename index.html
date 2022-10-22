@@ -1,1 +1,126 @@
-hola mundo
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Historial Clínico</title>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="app-container">
+      <header>Historial Clínico</header>
+
+      <!-- ESPACIO DE BÚSQUEDA -->
+      <div class="container-wrapper">
+        <div class="text-input">
+          <label>Número de Identificación</label>
+          <input type="text" id="id" placeholder="E.g. 000 111 222 333" />
+        </div>
+        <button id="button-submit" class="button">
+          Buscar &#128269;
+        </button>
+      </div>
+
+      <!-- INFORMACIÓN GENERAL -->
+      <div class="info-wrapper" id="historial">
+        <div class="container-patient">
+          <!-- ULTIMA MODIFICACIÓN -->
+          <div class="last-mod">
+            <label id="last_mod">Última modificación: </label>
+          </div>
+          <hr class="solid" />
+
+          <!-- NOMBRE -->
+          <h2>Nombre</h2>
+          <textarea
+            class="patient_name"
+            type="text"
+            id="name_input"
+            rows="1"
+          ></textarea>
+          <hr class="solid" />
+
+          <!-- ANTECEDENTES -->
+          <h2>Antecedentes</h2>
+          <div class="info-field">
+            <label for="alergias_input">Alergias</label>
+            <textarea
+              name="alergias_input"
+              id="alergias_input"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="info-field">
+            <label for="enfs_input">Enfermedades</label>
+            <textarea name="enfs_input" id="enfs_input" rows="5"> </textarea>
+          </div>
+          <div class="info-field">
+            <label for="meds_input">Medicamentos</label>
+            <textarea name="meds_input" id="meds_input" rows="5"> </textarea>
+          </div>
+          <div class="info-field">
+            <label for="cirugias_input">Cirugías</label>
+            <textarea
+              name="cirugias_input"
+              id="cirugias_input"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="info-field">
+            <label for="otros_input">Otros</label>
+            <textarea name="otros_input" id="otros_input" rows="5"> </textarea>
+          </div>
+          <hr class="solid" />
+
+          <!-- TRATAMIENTOS -->
+          <div class="info-field">
+            <h2>Tratamientos</h2>
+            <textarea
+              name="tratamientos_input"
+              id="tratamientos_input"
+              rows="3"
+            ></textarea>
+          </div>
+          <hr class="solid" />
+
+          <!-- PROBLEMAS -->
+          <div class="info-field">
+            <h2>Problemas</h2>
+            <textarea
+              name="problemas_input"
+              id="problemas_input"
+              rows="5"
+            ></textarea>
+          </div>
+          <hr class="solid" />
+
+          <!-- OBSERVACIONES -->
+          <div class="info-field">
+            <h2>Observaciones</h2>
+            <textarea
+              name="observaciones_input"
+              id="observaciones_input"
+              rows="3"
+            ></textarea>
+          </div>
+          <hr class="solid" />
+
+          <!-- PIE DE SECCIÓN -->
+          <div class="container-wrapper">
+            <button id="button-update" class="button">
+              Actualizar ↻
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
