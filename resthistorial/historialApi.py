@@ -23,7 +23,7 @@ class Historial:
     def get_historial(self):
         return {"nombre": self.nombre, "id": self.id, "fecha": self.fecha, "hora": self.hora, "alergias": self.alergias,
                 "enfermedades": self.enfermedades, "medicamentos": self.medicamentos, "cirugias": self.cirugias, "otros": self.otros,
-                "tratamiento": self.tratamientos, "problemas": self.problemas, "observaciones": self.observaciones}
+                "tratamientos": self.tratamientos, "problemas": self.problemas, "observaciones": self.observaciones}
 
     def add_tratamiento(self, tratamiento):
         self.tratamiento.append(tratamiento)
